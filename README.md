@@ -35,6 +35,3 @@ npm install
 
 # Execute o servidor
 node index.js
-
-📩 Contato
-📧 Email: hbezerradev@gmail.com
