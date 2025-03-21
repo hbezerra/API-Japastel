@@ -10,6 +10,7 @@ const pastelRouter = require("./router/pastelRouter"); // Importando o router de
 // UTILIZAÇÃO DE BIBLIOTECAS ; 
 const app = express(); // Atribuindo a variável uma instância de "Express" ; 
 app.use(bodyParser.json()); // Fazendo com que o corpo das requisições sejam lidos como JSON ; 
+app.use(express.json()); // Garante que o corpo da requisição seja interpretado corretamente ; 
 
 // UTILIZAÇÃO DE ARQUIVOS ; 
 app.use("/api", pastelRouter); // Utilizando o router de pastel ; 
@@ -18,4 +19,4 @@ app.use("/api", pastelRouter); // Utilizando o router de pastel ;
 const PORT = 3000; // Atribuindo a variável a porta no qual será rodado o servidor ;
 app.listen(PORT, () => { // Iniciando o servidor ; 
     console.log(`Servidor iniciado! Localost:${PORT}`); // Atribuindo a mensagem de sucesso ; 
-}) 
+})

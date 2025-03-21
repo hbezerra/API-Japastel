@@ -47,4 +47,24 @@ const deletePastel = async (req, res) => { // Função responsável por deletar 
     }
 }
 
-module.exports = {getPasteis, addPastel, deletePastel}; // Exportando as funções para serem utilizadas no router ; 
+const putPastel = async (req, res) => { // Função responsável por atualizar um pastel no banco de dados ; 
+    try {
+        const {id} = req.params; // Recuperando o ID do pastel a ser editado ; 
+        const {nome, descricao, valor} = req.body; // Recuperando os dados digitados pelo usuário e atribuindo as variáveis ; 
+
+        if(!id || !mongoose.Types.ObjectId.isValid(id)) {return res.status(400).json({message: "Erro ao atualizar pastel! O ID informado é inválido!"})} // Atribuindo a mensagem de erro ; 
+        if(!nome || !descricao || !valor) {return res.status(400).json({message: "Erro ao atualizar pastel! Todos os campos são obrigatórios!"})} // Atribuindo a mensagem de erro ; 
+        if(isNaN(valor) || valor < 0) {return res.status(400).json({message: "Erro ao atualizar pastel! O valor precisa ter um valor válido!" })} // Atribuindo a mensagem de erro ;
+    
+        const pastelAtualizado = await Pastel.findByIdAndUpdate(id, {nome, descricao, valor}); // Procurando um pastel com o ID informado pelo usuário e atribuindo a variável ; 
+
+        const retornoUser = pastelAtualizado ? res.status(200).json({message: "Pastel atualizado com sucesso!"}) : res.status(400).json({message: "Erro ao atualizar pastel! Não foi encontrado nenhum pastel com o ID informado!"}); // Atribuindo a mensagem de erro ou sucesso baseado na condição ; 
+        return retornoUser;
+
+    }
+    catch(error) {
+        res.status(500).json({message: "Erro ao atualizar pastel no banco de dados!"}); // Atribuindo a mensagem de erro ; 
+    }
+}
+
+module.exports = {getPasteis, addPastel, deletePastel, putPastel}; // Exportando as funções para serem utilizadas no router ; 

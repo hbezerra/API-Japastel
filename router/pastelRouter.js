@@ -5,5 +5,6 @@ const pastelController = require("../controller/pastelController"); // Importand
 router.get("/pastel", pastelController.getPasteis); // Rota de "GET" ; 
 router.post("/pastel", pastelController.addPastel); // Rota de "POST" ; 
 router.delete("/pastel/:id", pastelController.deletePastel); // Rota de "DELETE" ; 
+router.put("/pastel/:id", pastelController.putPastel); // Rota de "PUT" ; 
 
 module.exports = router; // Exportando o router para ser utilizado no Index ; 
