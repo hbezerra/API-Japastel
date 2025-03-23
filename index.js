@@ -5,14 +5,18 @@ const bodyParser = require("body-parser"); // Importando a biblioteca "BodyParse
 
 // IMPORT DE ARQUIVOS ; 
 const db = require("./database/db"); // Importando a conexão com o banco de dados ; 
+const userRouter = require("./router/userRouter"); // Importando o router de usuário ; 
 const pastelRouter = require("./router/pastelRouter"); // Importando o router de pastel ; 
 
 // UTILIZAÇÃO DE BIBLIOTECAS ; 
 const app = express(); // Atribuindo a variável uma instância de "Express" ; 
 app.use(bodyParser.json()); // Fazendo com que o corpo das requisições sejam lidos como JSON ; 
 app.use(express.json()); // Garante que o corpo da requisição seja interpretado corretamente ; 
+app.use(bodyParser.urlencoded({ extended: true })); // Permite dados de formulário
+
 
 // UTILIZAÇÃO DE ARQUIVOS ; 
+app.use("/", userRouter); // Utilizando o router de usuário ; 
 app.use("/api", pastelRouter); // Utilizando o router de pastel ; 
 
 // SERVIDOR ; 

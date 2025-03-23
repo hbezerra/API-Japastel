@@ -3,7 +3,7 @@ const mongoose = require("mongoose"); // Importando a biblioteca "mongoose" ;
 
 const getPasteis = async (req, res) => { // Função responsável por retornar todos os pastéis cadastrados no banco de dados ; 
     try {
-        const pasteis = await Pastel.find(); // Selecionando todos os pastéis cadastrados no banco de dados e atribuindo a variável ; 
+        const pasteis = await Pastel.find(); // Selecionando todos os pastéis cadastrados no banco de dados e atribuindo a variável ;
         return res.status(200).json(pasteis); // Retornando os pastéis cadastrados no banco de dados ;  
     }
     catch(error) {
