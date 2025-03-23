@@ -1,12 +1,13 @@
 const mongoose = require("mongoose");
 const bcrypt = require("bcrypt");
 
-let userSchema = new mongoose.Schema({
-    nome: { type: String, required: true },
-    email: { type: String, required: true, unique: true, lowercase: true },
-    senha: { type: String, required: true },  // Corrigido de "password" para "senha"
-    cpf: { type: String, required: true, unique: true },  // CPF como string
-    telefone: { type: String, required: true },  // Telefone como string
+let userSchema = new mongoose.Schema({ // Criando a tabela no banco de dados ; 
+    nome: { type: String, required: true }, // Criando o campo "nome" ; 
+    email: { type: String, required: true, unique: true, lowercase: true }, // Criando o campo "email" ; 
+    senha: { type: String, required: true }, // Criando o campo "senha" ; 
+    cpf: { type: String, required: true, unique: true },  // Criando o campo "CPF" ; 
+    telefone: { type: String, required: true },  // Criando o campo "telefone" ; 
+    comentario: {type: mongoose.Schema.Types.ObjectId, ref: "Comentario"}, // Criando o campo "comentário" ; 
     created_at: { type: Date, default: Date.now }
 });
 
@@ -31,4 +32,4 @@ userSchema.methods.isCorrectPassword = function (senha, callback) {
     })
 }
 
-module.exports = mongoose.model('User', userSchema);
+module.exports = mongoose.models.User || mongoose.model('User', userSchema);
