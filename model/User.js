@@ -8,6 +8,7 @@ let userSchema = new mongoose.Schema({ // Criando a tabela no banco de dados ;
     cpf: { type: String, required: true, unique: true },  // Criando o campo "CPF" ; 
     telefone: { type: String, required: true },  // Criando o campo "telefone" ; 
     comentario: {type: mongoose.Schema.Types.ObjectId, ref: "Comentario"}, // Criando o campo "comentário" ; 
+    pedidos: [{type: mongoose.Schema.Types.ObjectId, ref: "Pedido"}], // Criando o campo "pedidos" ; 
     created_at: { type: Date, default: Date.now }
 });
 

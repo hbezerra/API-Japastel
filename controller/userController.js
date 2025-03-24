@@ -1,5 +1,5 @@
 const mongoose = require("mongoose"); // Importando a biblioteca "mongoose"; 
-const User = require("../Model/User"); // Importando o model de usuário ; 
+const User = require("../model/User"); // Importando o model de usuário ; 
 const jwt = require("jsonwebtoken"); // Importando o JsonWebToken ; 
 
 require('dotenv').config();
