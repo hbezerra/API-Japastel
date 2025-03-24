@@ -1,4 +1,4 @@
-<h2>📦 Japastel - Backend </h2><br>
+<h2>📦 Japastel - Backend </h2>
 Este repositório contém a implementação do back-end do aplicativo mobile da pastelaria Japastel, desenvolvido com Node.js e MongoDB. A autenticação de usuários é feita utilizando JSON Web Token (JWT), garantindo segurança no acesso às funcionalidades do sistema.  
 
 O projeto inclui operações de CRUD, integração com o banco de dados MongoDB e middleware de autenticação para proteger rotas sensíveis.  
