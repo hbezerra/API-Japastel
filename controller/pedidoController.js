@@ -5,7 +5,8 @@ const mongoose = require("mongoose"); // Importando o "mongoose" ;
 
 const getPedidos = async (req, res) => { // Função responsável por selecionar todos os pedidos cadastrados no banco de dados ; 
     try {
-        const pedidos = await Pedido.find().populate("pasteis").populate("usuario"); // Selecionando todos os pedidos cadastrados no banco de dados ; 
+        const idUser = await recuperarIdUser(req); // Recuperando o ID do usuário cadastrado na requisição ; 
+        const pedidos = await Pedido.find({usuario: idUser}).populate("pasteis").populate("usuario"); // Selecionando todos os pedidos cadastrados no banco de dados vinculados ao usuário logado no Sistema; 
         return res.status(200).json(pedidos); // Retornando todos os pedidos cadastrados no banco de dados ; 
     }
     catch (error) {
@@ -37,7 +38,7 @@ const addPedido = async (req, res) => { // Função responsável por adicionar u
 
         if (novoPedido) { // Se o pedido for criado com sucesso ; 
             await User.findByIdAndUpdate(idUser, { $push: { pedidos: novoPedido._id } }); // Associando o pedido ao usuário correspondente ; 
-            return res.status(200).json({ message: `Pedido: ${novoPedido._id}, adicionado com sucesso!`}); // Atribuindo a mensagem de sucesso ;  
+            return res.status(201).json(novoPedido); // Atribuindo a mensagem de sucesso ;  
         } else {
             return res.status(400).json({ message: "Erro ao adicionar pedido no banco de dados" }); // Atribuindo a mensagem de erro ; 
         }
